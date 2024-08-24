@@ -8,6 +8,24 @@ function media(){
     return BASE_URL."/Assets";
 }
 
+function headerAdmin($data = []){
+    $view_header = "Views/Template/header_admin.php";
+    if (file_exists($view_header)) {
+        require_once($view_header);
+    } else {
+        echo "Error: El archivo de cabecera no existe.";
+    }
+}
+
+function footerAdmin($data=""){
+    $view_footer = "Views/Template/footer_admin.php";
+    if (file_exists($view_footer)) {
+        require_once($view_footer);
+    } else {
+        echo "Error: El archivo de pie de página no existe.";
+    }
+}
+
 function dep($data){
     
     $format = print_r('<pre>');

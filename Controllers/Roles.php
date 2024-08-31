@@ -18,6 +18,20 @@ class Roles extends Controllers{
    public function getRoles(){
     $arrData = $this->model->selectRoles();
 
+    for ($i=0; $i < count($arrData) ; $i++) { 
+    if($arrData[$i]['status'] == 1){
+        $arrData[$i]['status'] = '<span class="badge badge-success">Activo</span>';
+    }else{
+        $arrData[$i]['status'] = '<span class="badge badge-danger">Inactivo</span>';
+    }
+
+       $arrData[$i]['options'] = '<div class="text-center">
+       <button class="btn btn-secondary btn-sm btnPermisosRol" rl="'.$arrData[$i]['idrol'].'" title="permisos"><i class="fas fa-key"></i></button>
+       <button class="btn btn-primary btn-sm btnEditRol" rl="'.$arrData[$i]['idrol'].'" title="Editar"><i class="fa-solid fa-pen-to-square"></i></button>
+       <button class="btn btn-danger btn-sm btnDelRol" rl="'.$arrData[$i]['idrol'].'" title="Eliminar"><i class="fa-solid fa-trash"></i></button>
+
+                                </div>';
+    }
     echo json_encode($arrData,JSON_UNESCAPED_UNICODE);
     die();
    }
